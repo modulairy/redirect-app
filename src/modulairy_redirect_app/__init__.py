@@ -28,7 +28,7 @@ def redirect_app_init():
                 netloc=redirect_map[parsed_url.hostname]
             new_parsed_url = parsed_url._replace(netloc = netloc)
             new_url = urlunparse(new_parsed_url)
-            return json.dumps(new_url) #redirect(new_url, code=301)
+            return redirect(new_url, code=301)
         else:
             abort(404)
 
