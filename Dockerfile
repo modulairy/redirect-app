@@ -12,6 +12,7 @@ RUN pip install flask
 RUN pip install gunicorn
 # Install any needed packages specified in requirements.txt
 #RUN python /app/src/setup.py install
+RUN chmod +x /app/entrypoint.sh
 
 # Define environment variable for the port (optional)
 ENV PORT=5000
