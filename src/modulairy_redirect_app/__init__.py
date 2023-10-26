@@ -17,8 +17,8 @@ def redirect_app_init():
                 redirect_map[site.strip().lower()] = value
     
 
-    @app.route('/')
-    def redirect_url():
+    @app.route('/<path:path>')
+    def redirect_url(path):
         parsed_url = urlparse(request.url)
         if parsed_url.hostname in redirect_map:
             netloc=""
