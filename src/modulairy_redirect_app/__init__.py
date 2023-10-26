@@ -16,18 +16,15 @@ def redirect_app_init():
                 value = key.replace("TARGET_","").replace("_",".").lower();
                 redirect_map[site.strip().lower()] = value
     
-    print(json.dumps(redirect_map,indent=4))
 
     @app.route('/')
     def redirect_url():
-        # Get the incoming host information
-        request_host = request.host.lower().strip()
-        if key in redirect_map:
-            parsed_url = urlparse(request.url)
-            new_parsed_url = parsed_url._replace(netloc=redirect_map[request_host])
+        parsed_url = urlparse(request.url)
+        if parsed_url.hostname in redirect_map:
+            new_parsed_url = parsed_url._replace(netloc = "{}:{}".format(redirect_map[parsed_url.hostname],parsed_url.port))
             new_url = urlunparse(new_parsed_url)
             return redirect(new_url, code=301)
         else:
-            abort(403)
+            abort(404)
 
     return app
