@@ -21,9 +21,14 @@ def redirect_app_init():
     def redirect_url():
         parsed_url = urlparse(request.url)
         if parsed_url.hostname in redirect_map:
-            new_parsed_url = parsed_url._replace(netloc = "{}:{}".format(redirect_map[parsed_url.hostname],parsed_url.port))
+            netloc=""
+            if(parsed_url.port):
+                netloc="{}:{}".format(redirect_map[parsed_url.hostname],parsed_url.port)
+            else:
+                netloc=redirect_map[parsed_url.hostname]
+            new_parsed_url = parsed_url._replace(netloc = netloc)
             new_url = urlunparse(new_parsed_url)
-            return redirect(new_url, code=301)
+            return json.dumps(new_url) #redirect(new_url, code=301)
         else:
             abort(404)
 
