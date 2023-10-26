@@ -4,7 +4,7 @@ with open('./README.md', 'r') as f:
 
 setup(
     name='modulairy-redirect-app',
-    version='0.0.1',
+    version='1.0.0',
     packages=['modulairy_redirect_app'],
     install_requires=[
         'Flask',
