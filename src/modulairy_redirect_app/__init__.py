@@ -17,6 +17,7 @@ def redirect_app_init():
                 redirect_map[site.strip().lower()] = value
     
 
+    @app.route('/', defaults={'path': None})
     @app.route('/<path:path>')
     def redirect_url(path):
         parsed_url = urlparse(request.url)
