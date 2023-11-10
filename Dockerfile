@@ -19,7 +19,7 @@ ENV PORT=5000
 CMD ["/app/entrypoint.sh"]
 
 
-FROM --platform=linux/arm64/v8 python:3.10-slim
+FROM --platform=linux/arm64 python:3.10-slim
 WORKDIR /app
 
 # Copy the current directory contents into the container at /app
